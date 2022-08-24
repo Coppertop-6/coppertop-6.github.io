@@ -10,8 +10,8 @@ South African based security guy trying to learn new things and share experience
 
 Not sure how this is going to go... But hey, Let's give it a go.
 
-> Pro tip... You dont know what you dont know...
-
+**> Pro tip... You dont know what you dont know...
+**
 ```python
 import mail
 ```
