@@ -42,7 +42,7 @@ social:
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Coppertop
   email: why@nomail.com             # change to your email address
-  links: https://twitter.com/coppertop109 
+  links: 
     # The first element serves as the copyright owner's link
     - https://twitter.com/coppertop109      # change to your twitter homepage
     - https://github.com/coppertop-6       # change to your github homepage
