@@ -6,7 +6,6 @@ tags: [code_execution]     #   TAG should always be lowercase
 
 ---
 
-# test
 
 With the ever increasing effectiveness of detection tools on the Blue Team side, more sophisticated ways of executing unmanaged code is needed on the Red Team side.
 Powershell has long been a go-to for Red Teamers, but has also been heavily scrutinized by detective capabilities and, as such, much of the Offensive tradecraft has moved over to the flexibility that .NET  provides. Two such mechanisms have gained popularity over the years and, in this post, I will attempt to explain the difference between the two mechanisms. 
