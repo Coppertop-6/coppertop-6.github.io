@@ -2,7 +2,7 @@
 title: Executing Unmanaged Code in Memory
 date: 2023-02-09 12:00:00 -500
 categories: [blog]
-tags: [code_execution]     #   TAG should always be lowercase
+tags: [blackhat]     #   TAG should always be lowercase
 
 ---
 # test
