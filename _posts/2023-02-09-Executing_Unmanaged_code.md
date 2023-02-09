@@ -33,6 +33,7 @@ The most difficult part to understand is the Type FunctionDelegateType parameter
 Defining a delegate works in a similar manner. You can define a delegate similar to how you would define a variable. Optionally, you can specify what calling convention to use when calling the function wrapped by the delegate.
 Here is an example of a FunctionDelegateType for the NtCreateThreadEx API:
 
+```c#
 [UnmanagedFunctionPointer(CallingConvention.StdCall)]
 public delegate Execute.Native.NTSTATUS NtCreateThreadEx(
     out IntPtr threadHandle,
@@ -46,13 +47,15 @@ public delegate Execute.Native.NTSTATUS NtCreateThreadEx(
     int sizeOfStack,
     int maximumStackSize,
     IntPtr attributeList);
-    
+```
+
 There is already a library of delegates and function wrappers for commonly used NT and Win32 APIs.
 Using this dunamic loading technique removes the detection considerations present with P/Invoke as there are no suspicious API calls in the IAT of your Assembly.
 In Practise
 SharpSploit now has a DInvoke library in the SharpSploit.Execution.DynamicInvoke namespace. The DInvoke library provides a managed wrapper function for each unmanaged function. The wrapper helps the user by ensuring that parameters are passed in correctly and the correct type of object is returned.
 The code below demonstrates how DInvoke is used for the NtCreateThreadEx function in ntdll.dll. The delegate (that sets up the function prototype) is stored in the SharpSploit.Execution.DynamicInvoke.Native.DELEGATES struct. The wrapper method is SharpSploit.Execution.DynamicInvoke.Native.NtCreateThreadEx that takes all of the same parameters that you would expect to use in a normal PInvoke.
 
+```c#
 namespace SharpSploit.Execution.DynamicInvoke
 {
     /// <summary>
@@ -104,7 +107,8 @@ namespace SharpSploit.Execution.DynamicInvoke
                 int maximumStackSize,
                 IntPtr attributeList);
         }
-        
+```
+
    Hopefully this clarified the difference between these popular techniques and what to keep in mind when using them.
 a__https://thewover.github.io/Dynamic-Invoke/
 a__https://learn.microsoft.com/en-us/dotnet/standard/native-interop/pinvoke
