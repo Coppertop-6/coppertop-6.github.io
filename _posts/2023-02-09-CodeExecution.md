@@ -2,9 +2,10 @@
 title: Executing Unmanaged Code in Memory
 date: 2023-02-09 12:00:00 -500
 categories: [blog]
-tags: [blackhat]     #   TAG should always be lowercase
+tags: [code_execution]     #   TAG should always be lowercase
 
 ---
+
 # test
 
 With the ever increasing effectiveness of detection tools on the Blue Team side, more sophisticated ways of executing unmanaged code is needed on the Red Team side.
