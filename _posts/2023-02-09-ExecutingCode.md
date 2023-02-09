@@ -57,7 +57,7 @@ public delegate Execute.Native.NTSTATUS NtCreateThreadEx(
     int sizeOfStack,
     int maximumStackSize,
     IntPtr attributeList);
-    ```
+```
 
 There is already a library of delegates and function wrappers for commonly used NT and Win32 APIs.
 Using this dunamic loading technique removes the detection considerations present with P/Invoke as there are no suspicious API calls in the IAT of your Assembly.
