@@ -32,7 +32,7 @@ description: >-                        # used by seo meta and the atom feed
 url: 'https://coppertop-6.github.io/'
 
 github:
-  username: coppertop-6, J33R4FF3             # change to your github username
+  username: coppertop-6            # change to your github username
 
 twitter:
   username: coppertop109            # change to your twitter username
@@ -47,7 +47,7 @@ social:
     - https://twitter.com/coppertop109      # change to your twitter homepage
     - https://github.com/coppertop-6       # change to your github homepage
     # Uncomment below to add more social links
-    - https://j33r4ff3.github.io/
+    # - https://j33r4ff3.github.io/
     # - https://www.linkedin.com/in/username
 
 google_site_verification:               # fill in to your verification string
