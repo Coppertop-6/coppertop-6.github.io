@@ -8,11 +8,12 @@ tags: [code_execution]     #   TAG should always be lowercase
 
 # Difference between P/Invoke & D/Invoke
 
-With the ever increasing effectiveness of detection tools on the Blue Team side, more sophisticated ways of executing unmanaged code is needed on the Red Team side.
-Powershell has long been a go-to for Red Teamers, but has also been heavily scrutinized by detective capabilities and, as such, much of the Offensive tradecraft has moved over to the flexibility that .NET  provides. Two such mechanisms have gained popularity over the years and, in this post, I will attempt to explain the difference between the two mechanisms. 
-P/Invoke - Platform Invoke
-P/Invoke allows .NET applications to access structs, callbacks, and functions in unmanaged libraries (DLLs).
-One of the main reasons that .NET has become popular with Offensive tool developers is that .NET assemblies are easy to load and execute from memory which means that as a Red Team Operator with initial access, there is no need to touch disk while executing advanced post-exploitation activities.
+With the ever increasing effectiveness of detection tools on the Blue Team side, more sophisticated ways of executing unmanaged code is needed on the Red Team side. Powershell has long been a go-to for Red Teamers, but has also been heavily scrutinized by detective capabilities and, as such, much of the Offensive tradecraft has moved over to the flexibility that .NET  provides. Two such mechanisms have gained popularity over the years and, in this post, I will attempt to explain the difference between the two mechanisms.
+
+# P/Invoke - Platform Invoke
+
+P/Invoke allows .NET applications to access structs, callbacks, and functions in unmanaged libraries (DLLs). One of the main reasons that .NET has become popular with Offensive tool developers is that .NET assemblies are easy to load and execute from memory which means that as a Red Team Operator with initial access, there is no need to touch disk while executing advanced post-exploitation activities.
+
 Some considerations to keep in mind, i.t.o detection, when using P/Invoke.
 When a .NET assembly is loaded, the Import Address Table will be updated to include the memory addresses of the API calls and functions that are called by the assembly (Static Reference). For example, if you make use of P/Invoke to call CreateRemoteThread, then your executable’s import address table will include a static reference to that function. This is easy to view from a defensive perspective when analyzing the executable and will clearly show that you are making a malicious call to a remote process.
 Any endpoint security product monitoring API calls, through API Hooking, on the endpoint will catch any call made through P/Invoke. More advanced Endpoint Detection and Response tools may also easily block these malicious looking calls.
