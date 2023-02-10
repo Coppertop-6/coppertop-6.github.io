@@ -131,3 +131,5 @@ Hopefully this clarified the difference between these popular techniques and wha
 https://thewover.github.io/Dynamic-Invoke/
 https://learn.microsoft.com/en-us/dotnet/standard/native-interop/pinvoke
 https://github.com/cobbr/SharpSploit
+
+Post written by: *J33r4ff3*
