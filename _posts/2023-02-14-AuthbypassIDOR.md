@@ -84,6 +84,8 @@ In the above example, an attacker could manipulate the session ID parameter to a
 
 ## Conclusion
 
+In summary, while both authorization bypass and IDOR involve accessing or modifying data that should be restricted, authorization bypass is generally about circumventing authentication or authorization checks, whereas IDOR is about manipulating object references to access data that should be restricted.
+
 In conclusion, IDOR and Authorization Bypass are two common web application vulnerabilities that can lead to unauthorized access or manipulation of data. IDOR occurs when a web application fails to validate user input, allowing an attacker to access resources they should not have access to. Authorization Bypass occurs when an attacker is able to perform actions they should not have access to due to a failure in the web application's access control mechanisms. It's important to note that every application is different, so there is no single method that will work for all applications. However, the steps provided can be used as a starting point for testing for Authorization Bypasses and IDORs. In addition, testers should stay up-to-date with the latest techniques and tools for finding these vulnerabilities.
 
 *References:*
