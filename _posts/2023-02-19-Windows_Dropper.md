@@ -20,6 +20,6 @@ Two of the main PEs offensive operators can/will make use of is .exe(s) and .dll
 
 https://github.com/corkami/pics/blob/master/binary/pe101/pe101.png
 
-![headers](/assets/img/headers.jpg)
+![headers](/assets/img/Headers.jpg)
 
 ![sections](/assets/img/PEBear.png)
