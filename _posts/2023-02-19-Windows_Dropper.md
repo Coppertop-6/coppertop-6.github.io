@@ -28,14 +28,19 @@ Two of the main PEs offensive operators can/will make use of is .exe(s) and .dll
 
 The 3 sections that we can make use of for our payload/shellcode are the .data (Data), .text (Text) and .rsrc (Resources) sections. Each section that you choose for your payload will require a different layout in our C program. We will discuss the differences, but let's create the template for our first dropper program and then look at the distinguising features of our program and it's corresponding section. For any shellcode execution, there needs to be 4 essential functions within your program (There are different ways of doing this within the offensive community, but that is a post/posts for another day). 
 
-Firstly, we want to reserve space in memory for our code and that can be accomplished by using the VirtualAlloc API. We allocate the memory space and also tell Windows what protections to apply to the memory space ```c#[flProtect](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualalloc)``` (very important for detection considerations).
+Firstly, we want to reserve space in memory for our code and that can be accomplished by using the ```c#VirtualAlloc``` API. We allocate the memory space and also tell Windows what protections to apply (Read and Write) to the memory space ```c#flProtect``` (very important for detection considerations).
 
 ```c#
 VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect)
 ```
 Secondly, we want to copy our payload (assigned to a variable in our template) into the newly reserved memory space with the ```c#RtlMoveMemory``` API.
 
-VirtualProtect - execute thread
+Thirdly, we change the protection on the assigned memory region to make it executable (Read, Write, Execute) by using the ```c#VirtualProtect``` API. Changing the memory protection after assignment is slightly less suspicious for AV/EDR tools.
 
-Changes the protection on a region of committed pages in the virtual address space of the calling process.
+Lastly we make use of the ```c#CreateThread``` API to execute our code in a new thread within the process.
+
+Our template for our dropper should now look like this:
+
+
+
 
