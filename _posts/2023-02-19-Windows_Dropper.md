@@ -24,7 +24,11 @@ Sections actually contain the executable code for a PE. The below image shows th
 
 Two of the main PEs offensive operators can/will make use of is .exe(s) and .dll(s). The main difference between the two is that an EXE is a self-contained structure and completely independant in memory. The EXE will create a new process in windows and can interact with other processes, load different libraries and use all the different Win32/NT APIs. a DLL on the other hand is just a library that is called by an already in-memory process and usually needs a function inside the library that is called by the process.
 
-#
+# Sections for use in offensive tradecraft
+
+The 3 sections that we can make use of for our payload/shellcode are the .data (Data), .text (Text) and .rsrc (Resources) sections. Each section that you choose for your payload will require a different layout in our C program. We will discuss the differences, but let's create the template for our first dropper program and then look at the distinguising features of our program and it's corresponding section. For any windows process to start and execute code, there needs to be 4 essential functions within your program (There are different ways of doing this within the offensive community, but that is a post/posts for another day). 
+
+VirtualAlloc, RtlMovememory, VirtualProtect - execute thread
 
 
 
