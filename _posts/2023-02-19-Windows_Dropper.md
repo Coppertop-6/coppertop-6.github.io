@@ -10,7 +10,15 @@ In this post we will take a very high level approach to creating a dropper for W
 
 # What is a Portable Executable (PE)
 
-a PE is a Way of structuring a file on disk so that the Windows loader recognizes the file as executable code and loads it into memory.
+a PE is a Way of structuring a file on disk so that the Windows loader recognizes the file as executable code and loads it into memory. If you want to have a detailed look at the structure of a PE, [here](https://github.com/corkami/pics/blob/master/binary/pe101/pe101.png) you go. The two main structures we will be looking at will be Headers and Sections.
+
+Headers is just metadata about the PE. The below image shows the information contained in the headers for notepad.exe.
+
+![headers](/assets/img/Headers.jpg)
+
+Sections actually contain the executable code for a PE. The below image shows the sections contained in notepad.exe. These sections will become important later on when choosing where to store your payload.
+
+![sections](/assets/img/PEBear.png)
 
 # What is the difference between an EXE and a DLL
 
@@ -18,8 +26,5 @@ Two of the main PEs offensive operators can/will make use of is .exe(s) and .dll
 
 #
 
-Have a look at a PE structure [here](https://github.com/corkami/pics/blob/master/binary/pe101/pe101.png)
 
-![headers](/assets/img/Headers.jpg)
 
-![sections](/assets/img/PEBear.png)
