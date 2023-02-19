@@ -18,4 +18,4 @@ Two of the main PEs offensive operators can/will make use of is .exe(s) and .dll
 
 #
 
-![sections](/assets/img/PEbear.jpeg)
+![sections](/assets/img/PEbear.png)
