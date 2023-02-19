@@ -17,3 +17,5 @@ a PE is a Way of structuring a file on disk so that the Windows loader recognize
 Two of the main PEs offensive operators can/will make use of is .exe(s) and .dll(s). The main difference between the two is that an EXE is a self-contained structure and completely independant in memory. The EXE will create a new process in windows and can interact with other processes, load different libraries and use all the different Win32/NT APIs. a DLL on the other hand is just a library that is called by an already in-memory process and usually needs a function inside the library that is called by the process.
 
 #
+
+![sections](/assets/img/PEbear.jpeg)
