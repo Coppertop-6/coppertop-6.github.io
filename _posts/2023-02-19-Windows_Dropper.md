@@ -51,7 +51,7 @@ Our template for our dropper should now look like this:
 
 ```c#
 unsigned char payload[] = {SHELLCODE};
-unsigned int payload_length = 4;
+unsigned int payload_length = SHELLCODE_LENGTH;
 ```
 
 ```c#
@@ -82,5 +82,12 @@ The differences in the code comes in w.r.t to which section you would like to us
 If you want to use the ```.text``` section, you need to assign your payload as a local variable. So within the main function of the application.
 If you want to use the ```.data``` section, you need to assign your payload as a global variable. So outside of the main function of the application.
 
-The use of the ```.rsrc``` section is slightly more complex.
+The use of the ```.rsrc``` section is slightly more complex:
+
+<ol>
+  <li>Store your payload in a resources file on disk ```payload.rc```</li>
+  <li>You need an additional include in the application ```include resources.h```</li>
+  <li>The payload needs to be extracted from a file using the ```FindResource```, ```LoadResource``` and ```LockResource``` APIs before continuing with the above template as normal</li>
+  <li>You will need to use the [Windows Resource Compiler}(https://learn.microsoft.com/en-us/windows/win32/menurc/using-rc-the-rc-command-line-) to create an object file from your payload resources file</li>
+</ol>
 
