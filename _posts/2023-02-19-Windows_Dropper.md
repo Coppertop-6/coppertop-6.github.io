@@ -85,9 +85,9 @@ If you want to use the ```.data``` section, you need to assign your payload as a
 The use of the ```.rsrc``` section is slightly more complex:
 
 <ol>
-  <li>Store your payload in a resources file on disk ```payload.rc```</li>
-  <li>You need an additional include in the application ```include resources.h```</li>
-  <li>The payload needs to be extracted from a file using the ```FindResource```, ```LoadResource``` and ```LockResource``` APIs before continuing with the above template as normal</li>
-  <li>You will need to use the [Windows Resource Compiler}(https://learn.microsoft.com/en-us/windows/win32/menurc/using-rc-the-rc-command-line-) to create an object file from your payload resources file</li>
+  <li>Store your payload in a resources file on disk - payload.rc</li>
+  <li>You need an additional include in the application "include resources.h"</li>
+  <li>The payload needs to be extracted from a file using the FindResource, LoadResource and LockResource APIs before continuing with the above template as normal</li>
+  <li>You will need to use the [Windows Resource Compiler](https://learn.microsoft.com/en-us/windows/win32/menurc/using-rc-the-rc-command-line-) to create an object file from your payload resources file</li>
 </ol>
 
