@@ -35,7 +35,15 @@ VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtec
 ```
 Secondly, we want to copy our payload (assigned to a variable in our template) into the newly reserved memory space with the ```RtlMoveMemory``` API.
 
+```c#
+RtlMoveMemory(VOID *Destination, VOID *Source, SIZE_T Length);
+```
+
 Thirdly, we change the protection on the assigned memory region to make it executable (Read, Write, Execute) by using the ```VirtualProtect``` API. Changing the memory protection after assignment is slightly less suspicious for AV/EDR tools.
+
+```c#
+VirtualProtect(LPVOID lpAddress, SIZE_T dwSize, DWORD flNewProtect, PDWORD lpflOldProtect);
+```
 
 Lastly we make use of the ```CreateThread``` API to execute our code in a new thread within the process.
 
@@ -54,7 +62,7 @@ Our template for our dropper should now look like this:
 
 	// run the payload
 	if ( mem_protect != 0 ) {
-			th = CreateThread(0, 0, (LPTHREAD_START_ROUTINE) me_reserve, 0, 0, 0);
+			exec = CreateThread(0, 0, (LPTHREAD_START_ROUTINE) me_reserve, 0, 0, 0);
 			WaitForSingleObject(th, -1);
 	}
 
