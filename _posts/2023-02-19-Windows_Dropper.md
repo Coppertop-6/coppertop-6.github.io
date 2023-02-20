@@ -92,3 +92,6 @@ The use of the ```.rsrc``` section is slightly more complex:
 </ol>
 
 Hopefully this post has clarified a couple of nuances for you and we will continue with this thread in future posts to look at some techniques to avoid getting detected by AV/EDR tools.
+
+
+Post written by: *J33r4ff3*
