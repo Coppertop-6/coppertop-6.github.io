@@ -16,12 +16,16 @@ There are mulitiple ways of getting initial access during a Red Team campaign, b
 
 Process injection involves much of the same steps as we have already discussed in [this](https://coppertop-6.github.io/posts/Windows_Dropper/) post. We will make use of 3 Windows APIs that were designed for debugging processes, namely [VIrtualAllocEx](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualallocex), [WriteProcessMemory](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-writeprocessmemory) and [CreateRemoteThread](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread). You might recognise these APIs and that is because it is the same APIs we used during the dropper design phase, but only for use in remote processes.
 
+We start off with assigning variables for our shellcode buffer and the remote thread we will execute that shellcode with. Using ```VIrtualAllocEx```, we can assign a buffer for our shellcode in a remote process and speicify the size of the buffer and what memory protections should be applied (RX).
+
 ```c#
 LPVOID pRemoteCode = NULL;
 HANDLE hThread = NULL;
 
 pRemoteCode = VirtualAllocEx(hProc, NULL, payload_len, MEM_COMMIT, PAGE_EXECUTE_READ);
 ```  
+
+After the buffer has been assigned, we can use ```WriteProcessMemory``` to "copy" our shellcode from our current process to the remote process identified in the previous step.
 
 ```c#        
 WriteProcessMemory(hProc, pRemoteCode, (PVOID)payload, (SIZE_T)payload_len, (SIZE_T *)NULL);
