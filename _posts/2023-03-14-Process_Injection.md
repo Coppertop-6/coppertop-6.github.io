@@ -42,3 +42,5 @@ if (hThread != NULL) {
     }
     return -1;
 ```
+
+The technique above is the classic way of accomplishing code injection and in future posts we will discuss some variations we can use to achieve the same result.
